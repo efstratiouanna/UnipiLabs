@@ -1,0 +1,53 @@
+﻿@model IEnumerable<UnipiLabs.Models.Enrollments>
+
+@{
+    ViewBag.Title = "Τα εργαστήριά μου";
+    Layout = "~/Views/Shared/_LayoutStudents.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<h2>Τα εργαστήριά μου</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.subjectTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.labTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.teamID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.selectedExamSlot)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.subjectTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.labTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.teamID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.selectedExamSlot)
+            </td>
+            <td>
+                <i class="material-icons my-tooltip" title="Λεπτομέρειες εργαστηρίου" aria-hidden="true" role="button" style='font-size:24px' onclick="location.href='@Url.Action("LabDetailsStudent", "Students", new { primKeyID = item.primKeyID })'">&#xe5d4;</i>
+            </td>
+        </tr>
+    }
+
+</table>

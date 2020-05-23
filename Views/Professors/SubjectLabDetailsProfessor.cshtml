@@ -1,0 +1,62 @@
+﻿@model UnipiLabs.Models.LabsAnnouncements
+
+@{
+    ViewBag.Title = "Λεπτομέρειες εργαστηρίου";
+    Layout = "~/Views/Shared/_LayoutProfessors.cshtml";
+}
+
+<h2>Λεπτομέρειες εργαστηρίου</h2>
+
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.labID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.labID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.subjectExamed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subjectExamed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.labTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.labTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BeginDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BeginDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.examSlotsDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.examSlotsDuration)
+        </dd>
+
+    </dl>
+</div>
+

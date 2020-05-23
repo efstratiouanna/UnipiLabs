@@ -1,0 +1,48 @@
+﻿@model IEnumerable<UnipiLabs.Models.Subjects>
+
+@{
+    ViewBag.Title = "Τα μαθήματά μου";
+    Layout = "~/Views/Shared/_LayoutProfessors.cshtml";
+}
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<h2>Τα μαθήματά μου</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.subjectID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subjectTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subjectDescription)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.subjectID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.subjectTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.subjectDescription)
+        </td>
+        <td>
+
+            <i class="material-icons my-tooltip" title="Προβολη εργαστηρίων μαθήματος" aria-hidden="true" role="button" style='font-size:24px' onclick="location.href='@Url.Action("SubjectLabsProfessor", "Professors", new { subjectID = item.subjectID })'">&#xe31f;</i>     
+            <i class="material-icons my-tooltip" title="Προβολη εγγεγραμμένων φοιτητών" aria-hidden="true" role="button" onclick="location.href='@Url.Action("RegisteredStudentsProfessor", "Professors", new { id = item.subjectID })'">&#xe7fb;</i>       
+            <i class="material-icons my-tooltip" title="Επεξεργασία πληροφοριών μαθήματος" aria-hidden="true" role="button" onclick="location.href='@Url.Action("EditSubjectProfessor", "Professors", new { id = item.subjectID })'">&#xe3c9;</i>       
+            <i class="material-icons my-tooltip" title="Διαγραφή μαθήματος" aria-hidden="true" role="button" onclick="location.href='@Url.Action("DeleteSubjectProfessor", "Professors", new { id = item.subjectID })'">&#xe872;</i>
+
+        </td>
+    </tr>
+}
+
+</table>

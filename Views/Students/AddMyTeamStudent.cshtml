@@ -1,0 +1,111 @@
+﻿@model UnipiLabs.Models.Enrollments
+
+@{
+    ViewBag.Title = "Εγγραφή ομάδας";
+    Layout = "~/Views/Shared/_LayoutStudents.cshtml";
+}
+
+
+<h2>Συμμετοχή στο εργαστήριο - Εγγραφή ομάδας</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+
+    <h4>Τα στοιχεία του εργαστηρίου είναι τα εξής:</h4>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-control">
+        @Html.LabelFor(model => model.subjectID): @ViewData["subID"]
+        @Html.HiddenFor(model => model.subjectID, new { @Value = ViewData["subID"] })
+    </div>
+    <br />
+
+    <div class="form-control">
+        @Html.LabelFor(model => model.subjectTitle): @ViewData["subjectTitle"]
+        @Html.HiddenFor(model => model.subjectTitle, new { @Value = ViewData["subjectTitle"] })
+    </div>
+    <br />
+
+    <div class="form-control">
+        @Html.LabelFor(model => model.labID): @ViewData["labID"]
+        @Html.HiddenFor(model => model.labID, new { @Value = ViewData["labID"] })
+    </div>
+    <br />
+
+    <div class="form-control">
+        @Html.LabelFor(model => model.labTitle): @ViewData["labTitle"]
+        @Html.HiddenFor(model => model.labTitle, new { @Value = ViewData["labTitle"] })
+    </div>
+    <br />
+
+    <div class="form-control">
+        @Html.LabelFor(model => model.labDate): @ViewData["labDate"]
+        @Html.HiddenFor(model => model.labDate, new { @Value = ViewData["labDate"] })
+    </div>
+    <br />
+
+    <div class="form-control">
+        @Html.LabelFor(model => model.labTime): @ViewData["labTime"]
+        @Html.HiddenFor(model => model.labTime, new { @Value = ViewData["labTime"] })
+    </div>
+    <br />
+
+    <div class="form-control">
+        @Html.LabelFor(model => model.selectedExamSlot): @ViewData["selectedSlot"]
+        @Html.HiddenFor(model => model.selectedExamSlot, new { @Value = ViewData["selectedSlot"] })
+    </div>
+    <br />
+    <div class="form-control">
+        @Html.LabelFor(model => model.teamID): @ViewData["teamID"]
+        @Html.HiddenFor(model => model.teamID, new { @Value = ViewData["teamID"] })
+    </div>
+
+
+
+
+    <h4>Εισάγετε τον αριθμό μητρώου κάθε μέλους της ομάδας σας:</h4>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.team, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.team, new { @Value = ViewBag.UserName, @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.team, "", new { @class = "text-danger" })
+        </div>
+    </div> 
+
+    @{
+        int number = ViewBag.numberOfTeamMembers;
+        for (int i = 1; i <= number; i++)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.team, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.team, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.team, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+    }
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" style="background-color: #b30000; color: white" value="Εγγραφή Ομάδας" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Ακύρωση εγγραφής", "LabsCalendar")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

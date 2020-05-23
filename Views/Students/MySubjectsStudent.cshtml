@@ -1,0 +1,43 @@
+﻿@model IEnumerable<UnipiLabs.Models.Subjects>
+
+@{
+    ViewBag.Title = "Τα μαθήματά μου";
+    Layout = "~/Views/Shared/_LayoutStudents.cshtml";
+}
+
+<h2>Τα μαθήματά μου</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.subjectTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subjectSemester)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.professorTeaching)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.subjectTitle)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.subjectSemester)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.professorTeaching)
+    </td>
+    <td>
+        @Html.ActionLink("Απεγγραφή", "UnregisterFromSubjectStudent", new { subjectID = item.subjectID }) |
+        @Html.ActionLink("Λεπτομέρειες", "SubjectDetailsStudent", new { subjectID = item.subjectID })
+    </td>
+</tr>
+}
+
+</table>

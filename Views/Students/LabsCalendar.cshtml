@@ -1,0 +1,126 @@
+﻿@{
+    ViewBag.Title = "Ημερολόγιο Εργαστηρίων";
+    Layout = "~/Views/Shared/_LayoutStudents.cshtml";
+}
+
+<h2>Ημερολόγιο Εργαστηρίων</h2>
+
+
+
+<div id="calender"></div>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><span id="eventTitle"></span></h4>
+            </div>
+            <div class="modal-body">
+                <p id="pDetails"></p>
+            </div>
+            <div class="modal-footer">
+                <button id="registerButton" type="button" class="btn btn-default" style="background-color: #b30000; color: white" data-dismiss="modal">Έξοδος</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <span style="background-color:yellow; color:white"><b>Μάθημα 1ου εξαμήνου</b></span><br />
+    <span style="background-color:orange; color:white"><b>Μάθημα 2ου εξαμήνου</b></span><br />
+    <span style="background-color:blue; color:white"><b>Μάθημα 3ου εξαμήνου</b></span><br />
+    <span style="background-color:green; color:white"><b>Μάθημα 4ου εξαμήνου</b></span><br />
+    <span style="background-color:pink; color:white"><b>Μάθημα 5ου εξαμήνου</b></span><br />
+    <span style="background-color:purple; color:white"><b>Μάθημα 6ου εξαμήνου</b></span><br />
+    <span style="background-color:brown; color:white"><b>Μάθημα 7ου εξαμήνου</b></span><br />
+    <span style="background-color:red; color:white"><b>Μάθημα 8ου εξαμήνου</b></span><br />
+</div>
+
+
+
+
+<link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css" rel="stylesheet" />
+<link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.print.css" rel="stylesheet" media="print" />
+
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var events = [];
+            $.ajax({
+                type: "GET",
+                url: "/Students/GetEvents",
+                success: function (data) {
+                    $.each(data, function (i, v) {
+                        events.push({
+                            title: v.Subject,
+                            description: v.Description,
+                            start: new Date(parseInt(v.Start.substr(6))),
+                            end: new Date(parseInt(v.End.substr(6))),
+                            color: v.ThemeColor,
+                            allDay: v.IsFullDay,
+                            labID: v.labID,
+                            subID: v.subID,
+                            registrationDeadLine: new Date(parseInt(v.RegistrationDeadLine.substr(6))),
+
+                        });
+                    })
+
+                    GenerateCalender(events);
+                },
+                error: function (error) {
+                    alert('failed');
+                }
+            })
+
+            function GenerateCalender(events) {
+                $('#calender').fullCalendar('destroy');
+                $('#calender').fullCalendar({
+                    contentHeight: 400,
+                    defaultDate: new Date(),
+                    timeFormat: 'h(:mm)a',
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,basicWeek,basicDay'
+                    },
+                    eventLimit: true,
+                    eventColor: '#378006',
+                    events: events,
+                    eventClick: function (calEvent, jsEvent, view) {
+                        $('#myModal #eventTitle').text(calEvent.title);
+                        var $description = $('<div/>');
+                        $description.append($('<p/>').html('<b>Έναρξη Εργαστηρίου:</b>' + calEvent.start.format("DD-MMM-YYYY HH:mm a")));
+                        if (calEvent.end != null) {
+                            $description.append($('<p/>').html('<b>Λήξη Εργαστηρίου:</b>' + calEvent.end.format("DD-MMM-YYYY HH:mm a")));
+                        }
+                        $('#myModal #pDetails').empty().html($description);
+
+                        var registrationDeadLine = calEvent.registrationDeadLine;
+                        var today = new Date();
+                        if (today > registrationDeadLine) {
+                            $description.append($('<p/>').html('<b>Η προθεσμία εγγραφής έχει λήξει</b>'));
+                        }
+                        else {
+                            var button = document.createElement("button");
+                        $(button).click(function () {
+                            location.href='@Url.Action("AvailableSlotsStudent", "Students")?labID=' + calEvent.labID + '&subID=' + calEvent.subID;
+});
+
+                            button.textContent = "Συμμετοχή";
+                            button.style = "background-color: #b30000; color: white";
+                            $description.append($('<p/>').html(button));
+                        }
+
+                        $('#myModal').modal();
+                    }
+                })
+            }
+        })
+
+    </script>
+}

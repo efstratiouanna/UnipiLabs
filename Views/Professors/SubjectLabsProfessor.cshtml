@@ -1,0 +1,61 @@
+﻿@model IEnumerable<UnipiLabs.Models.LabsAnnouncements>
+@using UnipiLabs.Controllers;
+@using UnipiLabs.Models;
+
+
+
+@{
+    ViewBag.Title = "Εργαστήρια μαθήματος";
+    Layout = "~/Views/Shared/_LayoutProfessors.cshtml";
+}
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+<h2>Εργαστήρια μαθήματος</h2>
+
+<p>
+    <input type="button" style="background-color: #b30000; color: white" value="+ Δημιουργία Νέου Εργαστηρίου" onclick="location.href='@Url.Action("CreateSubjectLabProfessor", "Professors", new { subID = ViewData["subID"] })'" />
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.labID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.labTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subjectExamed)
+        </th>
+        <th>
+            Τίτλος Μαθήματος
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.labID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.labTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.subjectExamed)
+            </td>
+            <td>
+                @ViewData["subjectTitle"]
+            </td>
+            <td>
+                <i class="material-icons my-tooltip" title="Προβολη ομάδων φοιτητών" aria-hidden="true" role="button" onclick="location.href='@Url.Action("ViewTeamsProfessor", "Professors", new { labID = item.labID })'">&#xe7fb;</i>
+                <i class="material-icons my-tooltip" title="Λεπτομέρειες εργαστηρίου" aria-hidden="true" role="button" style='font-size:24px' onclick="location.href='@Url.Action("SubjectLabDetailsProfessor", "Professors", new { id = item.labID, subjectID = ViewData["subjectTitle"] })'">&#xe5d4;</i>
+                <i class="material-icons my-tooltip" title="Διαγραφή εργαστηρίου" aria-hidden="true" role="button" onclick="location.href='@Url.Action("DeleteSubjectLabProfessor", "Professors", new { id = item.labID })'">&#xe872;</i><br />
+                <input type="button" style="background-color: #b30000; color: white" value="Βαθμολογία Ομάδων" onclick="location.href='@Url.Action("GradeTeamsProfessor", "Professors", new { labID = item.labID, subID = item.subjectExamed })'" />
+            </td>
+        </tr>
+    }
+
+</table>

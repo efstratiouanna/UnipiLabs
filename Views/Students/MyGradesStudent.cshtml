@@ -1,0 +1,62 @@
+﻿@model IEnumerable<UnipiLabs.Models.Enrollments>
+
+@{
+    ViewBag.Title = "Οι βαθμολογίες μου";
+    Layout = "~/Views/Shared/_LayoutStudents.cshtml";
+}
+
+<h2>Οι βαθμολογίες των εργαστηρίων μου</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.subjectID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subjectTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.labID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.labTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.labDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.teamID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.grade)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.subjectID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.subjectTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.labID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.labTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.labDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.teamID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.grade)
+        </td>
+    </tr>
+}
+
+</table>

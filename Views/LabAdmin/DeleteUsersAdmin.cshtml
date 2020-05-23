@@ -1,0 +1,56 @@
+﻿@model UnipiLabs.Models.Users
+
+@{
+    ViewBag.Title = "Διαγραφή Χρήστη";
+}
+
+<h2>Διαγραφή Χρήστη</h2>
+
+<h3>Είστε σίγουροι ότι θέλετε να διαγράψετε αυτόν τον χρήστη;</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" style="background-color: #b30000; color: white" value="Οριστική Διαγραφή" class="btn btn-default" /> |
+            @Html.ActionLink("Πίσω", "ViewUsersAdmin")
+        </div>
+    }
+</div>

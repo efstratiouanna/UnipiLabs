@@ -1,0 +1,80 @@
+﻿@model UnipiLabs.Models.LabsAnnouncements
+
+@{
+    ViewBag.Title = "Διαγραφή εργαστηρίου";
+    Layout = "~/Views/Shared/_LayoutProfessors.cshtml";
+}
+
+
+<h3>Είστε σίγουροι ότι θέλετε να διαγράψετε το συγκεκριμένο εργαστήριο;</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.labTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.labTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subjectExamed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subjectExamed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BeginDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BeginDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.examSlotsDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.examSlotsDuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExamSlots)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExamSlots)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numberOfTeamMembers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberOfTeamMembers)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit"style="background-color: #b30000; color: white" value="Οριστική Διαγραφή" class="btn btn-default" /> |
+            @Html.ActionLink("Ακύρωση", "MySubjectsProfessor")
+        </div>
+    }
+</div>

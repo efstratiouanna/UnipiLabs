@@ -1,0 +1,47 @@
+﻿@model UnipiLabs.Models.Subjects
+
+@{
+    ViewBag.Title = "Απεγγραφή από μάθημα";
+    Layout = "~/Views/Shared/_LayoutStudents.cshtml";
+}
+
+
+<h3>Είστε σίγουροι ότι θέλετε να απεγγραφείτε από το συγκεκριμένο μάθημα;</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.subjectTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subjectTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subjectDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subjectDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.professorTeaching)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.professorTeaching)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" style="background-color: #b30000; color: white" value="Απεγγραφή" class="btn btn-default" /> |
+            @Html.ActionLink("Ακύρωση", "MySubjectsStudent")
+        </div>
+    }
+</div>

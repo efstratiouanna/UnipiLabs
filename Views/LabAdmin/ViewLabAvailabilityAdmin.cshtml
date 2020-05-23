@@ -1,0 +1,63 @@
+﻿@model IEnumerable<UnipiLabs.Models.LabsAvailability>
+
+@{
+    ViewBag.Title = "Εργαστήρια που έχουν δημιουργηθεί";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Εργαστήρια που έχουν δημιουργηθεί</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.labID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.labDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.labTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subjectExamed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subjectTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.professorTeaching)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.availableComputers)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.labID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.labDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.labTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.subjectExamed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.subjectTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.professorTeaching)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.availableComputers)
+            </td>
+        </tr>
+    }
+
+</table>

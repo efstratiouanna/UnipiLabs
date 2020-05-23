@@ -1,0 +1,73 @@
+﻿@model UnipiLabs.Models.Subjects
+
+@{
+    ViewBag.Title = "Επεξεργασία πληροφοριών μαθήματος";
+}
+
+<h2>Επεξεργασία πληροφοριών μαθήματος</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.subjectID)
+        @Html.HiddenFor(model => model.professorTeaching)
+        @Html.HiddenFor(model => model.regStudent)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.subjectTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.subjectTitle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.subjectTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.subjectDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-lg-10">
+                @Html.TextAreaFor(model => model.subjectDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.subjectDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => Model.subjectSemester, "Εξάμηνο μαθήματος", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{
+                    var selectList = new SelectList(
+                        new List<SelectListItem>
+                        {
+                            new SelectListItem {Text = "1o εξάμηνο", Value = "1"},
+                            new SelectListItem {Text = "2o εξάμηνο", Value = "2"},
+                            new SelectListItem {Text = "3o εξάμηνο", Value = "3"},
+                            new SelectListItem {Text = "4o εξάμηνο", Value = "4"},
+                            new SelectListItem {Text = "5o εξάμηνο", Value = "5"},
+                            new SelectListItem {Text = "6o εξάμηνο", Value = "6"},
+                            new SelectListItem {Text = "7o εξάμηνο", Value = "7"},
+                            new SelectListItem {Text = "8o εξάμηνο", Value = "8"}
+}, "Value", "Text");
+                }
+                @Html.DropDownListFor(model => model.subjectSemester, selectList, ViewData["subjectSemester"].ToString(), new { @class = "css-class" })
+                @Html.ValidationMessageFor(model => model.subjectSemester, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" style="background-color: #b30000; color: white" value="Αποθήκευση" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Ακύρωση", "MySubjectsProfessor")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

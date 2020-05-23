@@ -1,0 +1,62 @@
+﻿@model UnipiLabs.Models.Subjects
+
+@{
+    ViewBag.Title = "Διαγραφή μαθήματος";
+}
+
+
+<h3>Είστε σίγουροι ότι θέλετε να διαγράψετε το συγκεκριμένο μάθημα;</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.subjectID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subjectID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.subjectTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subjectTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subjectSemester)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subjectSemester)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subjectDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subjectDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.professorTeaching)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.professorTeaching)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit"style="background-color: #b30000; color: white" value="Οριστική Διαγραφή" class="btn btn-default" /> |
+            @Html.ActionLink("Ακύρωση", "MySubjectsProfessor")
+        </div>
+    }
+</div>

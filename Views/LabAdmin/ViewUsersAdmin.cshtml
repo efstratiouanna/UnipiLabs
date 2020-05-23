@@ -1,0 +1,58 @@
+﻿@model IEnumerable<UnipiLabs.Models.Users>
+
+@{
+    ViewBag.Title = "Χρήστες του Unipi Labs";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<h2>Χρήστες</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Role)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+                <i class="material-icons my-tooltip" title="Επεξεργασία χρήστη" aria-hidden="true" role="button" onclick="location.href='@Url.Action("EditUsersAdmin", "LabAdmin", new { id = item.Id })'">&#xe3c9;</i>
+                <i class="material-icons my-tooltip" title="Διαγραφή χρήστη" aria-hidden="true" role="button" onclick="location.href='@Url.Action("DeleteUsersAdmin", "LabAdmin", new { id = item.Id })'">&#xe872;</i>
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<UnipiLabs.Models.Users>
+
+@{
+    ViewBag.Title = "Εγγεγραμμένοι φοιτητές στο μάθημα";
+    Layout = "~/Views/Shared/_LayoutProfessors.cshtml";
+}
+
+<h2>Εγγεγραμμένοι φοιτητές στο μάθημα</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+    </tr>
+
+    @{
+        List<string> RegisteredStudents = new List<string>();
+
+        int i = 0;
+        foreach (string item in ViewBag.StudentsList)
+        {
+            RegisteredStudents.Insert(i, item);
+            i = i + 1;
+        }
+
+        int length = RegisteredStudents.Count();
+
+        for (int y = 0; y < length; y += 3)
+        {
+            <tr>
+                <td>
+                    @RegisteredStudents[y]
+                </td>
+                <td>
+                    @RegisteredStudents[y + 1]
+                </td>
+                <td>
+                    @RegisteredStudents[y + 2]
+                </td>
+            </tr>
+        }
+   
+    } 
+
+</table>

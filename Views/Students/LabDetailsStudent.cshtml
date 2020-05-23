@@ -1,0 +1,72 @@
+﻿@model UnipiLabs.Models.Enrollments
+
+@{
+    ViewBag.Title = "Λεπτομέρειες εργαστηρίου";
+    Layout = "~/Views/Shared/_LayoutStudents.cshtml";
+}
+
+<h2>Λεπτομέρειες εργαστηρίου</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.subjectID) <br/><br />
+        </dt>
+        
+        <dd>
+            @Html.DisplayFor(model => model.subjectID) <br /><br />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subjectTitle) <br /><br />
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subjectTitle) <br /><br />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.labID) <br /><br />
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.labID) <br /><br />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.labTitle) <br /><br />
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.labTitle) <br /><br />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.selectedExamSlot) <br /><br />
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.selectedExamSlot) <br /><br />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.teamID) <br /><br />
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.teamID) <br /><br />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.teamMembers) <br /><br />
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.teamMembers) <br /><br />
+        </dd>
+
+    </dl>
+</div>
+

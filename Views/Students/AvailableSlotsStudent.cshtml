@@ -1,0 +1,38 @@
+﻿@model IEnumerable<UnipiLabs.Models.ExamSlotsAvailability>
+
+@{
+    ViewBag.Title = "Διαθέσιμες ώρες";
+    Layout = "~/Views/Shared/_LayoutStudents.cshtml";
+}
+
+<h4>Επιλέξτε μια από τις παρακάτω διαθέσιμες ώρες για τη συμμετοχή σας στο εργαστήριο του μαθήματος<br/> <b> @ViewData["subjectExamed"] - @ViewData["subjectTitle"] </b></h4>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.labID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.slot)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.labID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.slot)
+            </td>
+            <td>
+                <input type="button" style="background-color: #b30000; color: white" value="Επιλογή ώρας" onclick="location.href='@Url.Action("AddMyTeamStudent", "Students", new { subID = @ViewData["subjectExamed"], primKeyID = item.primKeyID, labID = item.labID })'" />
+            </td>
+        </tr>
+    }
+
+</table>
+

@@ -1,0 +1,53 @@
+﻿@model UnipiLabs.Models.Subjects
+
+@{
+    ViewBag.Title = "Πληροφορίες μαθήματος";
+    Layout = "~/Views/Shared/_LayoutStudents.cshtml";
+}
+
+<h2>Πληροφορίες μαθήματος</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.subjectID) <br /><br />
+        </dt>
+
+
+        <dd>
+            @Html.DisplayFor(model => model.subjectID) <br /><br />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.subjectTitle) <br /><br />
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subjectTitle) <br /><br />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.subjectSemester) <br /><br />
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subjectSemester) <br /><br />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subjectDescription) <br /><br />
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subjectDescription) <br /><br />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.professorTeaching) <br /><br />
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.professorTeaching) <br /><br />
+        </dd>
+
+    </dl>
+</div>

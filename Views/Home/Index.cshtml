@@ -1,0 +1,82 @@
+﻿@model UnipiLabs.Models.Users
+
+@{
+    ViewBag.Title = "Αρχική σελίδα";
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+<style>
+    img {
+        width: 500px;
+        height: 320px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom:auto;
+        margin-top:auto;
+    }
+</style>
+
+
+<div style="background-image: url('/Images/PAPEIBackground.png'); height: 100%; width: 100%; object-fit: contain">
+
+    <img src="~/Images/UnipiLogo1.png" alt="UnipiLabsProject">
+    <br />
+</div>
+
+<div style="background-color: midnightblue">
+    <h2 style="color: white">
+        Είσοδος χρήστη
+    </h2>
+    @using (Html.BeginForm("Login", "Home"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px;
+        width: 350px; margin: auto; display: table; background-color: lightgray">
+            <table>
+                <tr>
+                    <td valign="top" style="color: darkred">
+                        @Html.LabelFor(model => model.UserName)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @placeholder = "Αριθμός Μητρώου" })
+                        
+                        <div style="height: 20px;">
+                            @Html.ValidationMessageFor(model => model.UserName)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" style="color: darkred">
+                        @Html.LabelFor(model => model.Password, "Κωδικός Πρόσβασης")
+                    </td>
+                    <td>
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Κωδικός Πρόσβασης" })
+                        <div style="height: 20px;">
+                            @Html.ValidationMessageFor(model => model.Password)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <input type="submit" style="background-color: #b30000; color: white" value="Είσοδος" class="btn btn-default" />
+                    </td>
+                </tr>
+            </table> <br />
+            <p style="color: darkred">Δεν έχετε λογαριασμό; Εγγραφείτε @Html.ActionLink("εδώ", "Registration", "UsersRegistration")</p>
+        </div>
+        <br /><br />
+
+    }
+</div>
